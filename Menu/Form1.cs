@@ -81,4 +81,55 @@ namespace Menu
 				}
 			}
 		}
+		private void MostrarReglas()
+		{
+			Console.Clear();
+
+			Console.WriteLine(
+				"--------- REGLAS -----------");
+
+			Console.WriteLine();
+
+
+			Console.WriteLine("REY");
+			Console.WriteLine("- Se mueve una casilla");
+
+			Console.WriteLine("- Horizontal");
+
+			Console.WriteLine("- Vertical");
+
+			Console.WriteLine("- Diagonal");
+
+
+			Console.WriteLine();
+
+
+			Console.WriteLine("TORRE");
+			Console.WriteLine(
+				"- Movimiento horizontal");
+			Console.WriteLine(
+				"- Movimiento vertical");
+			Console.WriteLine(
+				"- No puede saltar piezas");
+
+			Console.WriteLine();
+			Console.WriteLine("SOLDADO");
+			Console.WriteLine("- Avanza una casilla");
+
+			Console.WriteLine("- Captura diagonal");
+
+			Console.WriteLine("- No puede retroceder");
+
+
+			Console.WriteLine();
+
+
+
+			Console.WriteLine("OBJETIVO");
+			Console.WriteLine(
+				"- Capturar el Rey enemigo");
+
+			Console.ReadKey();
+		}
+
 		
