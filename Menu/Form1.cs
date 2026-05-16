@@ -28,4 +28,57 @@ namespace Menu
 				string opcion =
 					Console.ReadLine();
 				switch (opcion)
-				{ 
+				{
+					case "1":
+
+						Console.Clear();
+
+						Console.WriteLine(
+							"Iniciando partida...");
+
+						Console.WriteLine();
+
+						
+
+						Console.ReadKey();
+
+						break;
+					case "2":
+
+						MostrarReglas();
+
+						break;
+
+					
+
+					case "3":
+
+						MostrarPuntajes();
+
+						break;
+
+					
+
+					case "4":
+					
+
+						salir = true;
+
+						break;
+
+					
+
+					default:
+
+						Console.WriteLine();
+
+						Console.WriteLine(
+							"Opción inválida");
+
+						Console.ReadKey();
+
+						break;
+				}
+			}
+		}
+		
