@@ -126,10 +126,9 @@ namespace Menu
 
 
 			Console.WriteLine("OBJETIVO");
-			Console.WriteLine(
-				"- Capturar el Rey enemigo");
+			Console.WriteLine("- Capturar el Rey enemigo");
+			
 
 			Console.ReadKey();
 		}
-
 		
