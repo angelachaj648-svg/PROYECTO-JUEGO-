@@ -1,8 +1,19 @@
-namespace Juego_de_Estrategias
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace movimiento_de_pieza
 {
-	public partial class FormJuego : Form
+	public partial class Form1 : Form
 	{
-		public FormJuego()
+		private GestorTurnos gestor; // Instancia de nuestra clase
+		private Panel[,] casillas = new Panel[8, 8];
+		private Pieza[,] tableroLogico = new Pieza[8, 8];
+		private Pieza piezaSeleccionada = null;
+		private int filaSeleccionada = -1;
+		private int columnaSeleccionada = -1;
+
+		public Form1()
 		{
 			InitializeComponent();
 			gestor = new GestorTurnos();
@@ -11,7 +22,7 @@ namespace Juego_de_Estrategias
 			gestor.AlCambiarTurno += ActualizarInterfazTurno;
 		}
 
-		private void FormJuego_Load(object sender, EventArgs e)
+		private void Form1_Load(object sender, EventArgs e)
 		{
 			InicializarPiezas();
 			CrearTablero();
@@ -26,117 +37,139 @@ namespace Juego_de_Estrategias
 			{
 				for (int columna = 0; columna < 8; columna++)
 				{
-					Panel Casilla = new Panel();
-					Casilla.Size = new Size(tamañoCasilla, tamañoCasilla);
-					Casilla.Location = new Point(columna * tamañoCasilla, fila * tamañoCasilla);
+					Panel casilla = new Panel();
+					casilla.Size = new Size(tamañoCasilla, tamañoCasilla);
+					casilla.Location = new Point(columna * tamañoCasilla, fila * tamañoCasilla);
 
 					if ((fila + columna) % 2 == 0)
-					{
-						Casilla.BackColor = Color.White;
-
-					}
+						casilla.BackColor = Color.White;
 					else
-					{
-						Casilla.BackColor = Color.Gray;
-					}
-					this.Controls.Add(Casilla);
-					Casilla.Name = $"Casilla_{fila}_{columna}";
-					casillas[fila, columna] = Casilla;// 0
+						casilla.BackColor = Color.Gray;
 
-					Casilla.Tag =
-						new Point(fila, columna);
+					casilla.Name = $"Casilla_{fila}_{columna}";
+					casilla.Tag = new Point(fila, columna);
+					casilla.Click += Casilla_Click;
 
-					Casilla.Click += Casilla_Click;
+					this.Controls.Add(casilla);
+					casillas[fila, columna] = casilla;
 				}
 			}
 		}
-		private void DibujarPiezas() ///0
+
+		private void DibujarPiezas()
 		{
-			for (Panel p in casillas)
+			for (int f = 0; f < 8; f++)
 			{
-				p.Controls.Clear();
+				for (int c = 0; c < 8; c++)
+				{
+					casillas[f, c].Controls.Clear();
+				}
 			}
 
 			for (int fila = 0; fila < 8; fila++)
 			{
 				for (int columna = 0; columna < 8; columna++)
 				{
-					Pieza pieza =
-						tableroLogico[fila, columna];
+					Pieza pieza = tableroLogico[fila, columna];
 
 					if (pieza != null)
 					{
 						Label lbl = new Label();
-
 						lbl.Dock = DockStyle.Fill;
+						lbl.TextAlign = ContentAlignment.MiddleCenter;
 
-						lbl.TextAlign =
-							ContentAlignment.MiddleCenter;
 						if (pieza.Tipo == TipoPieza.Rey)
-
-						{
 							lbl.Text = "R";
-						}
-
-						if (pieza.Tipo == TipoPieza.Torre)
-
-						{
+						else if (pieza.Tipo == TipoPieza.Torre)
 							lbl.Text = "T";
-						}
-
-						if (pieza.Tipo == TipoPieza.Soldado)
-
-						{
+						else if (pieza.Tipo == TipoPieza.Soldado)
 							lbl.Text = "S";
-						}
 
 						casillas[fila, columna].Controls.Add(lbl);
-
 					}
 				}
 			}
 		}
-		private void Casilla_Click(object sender, ventArgs e)//0
 
-
+		private void Casilla_Click(object sender, EventArgs e)
 		{
-			Panel casilla =
-				sender as Panel;
+			Panel casilla = sender as Panel;
+			if (casilla == null) return;
 
-			Point posicion =
-				(Point)casilla.Tag;
-
+			Point posicion = (Point)casilla.Tag;
 			int fila = posicion.X;
-
 			int columna = posicion.Y;
+
 			if (piezaSeleccionada == null)
 			{
-				Pieza pieza =
-					tableroLogico[fila, columna];
+				Pieza pieza = tableroLogico[fila, columna];
 
-				if (pieza != null &&
-					gestor.EsTurnoDe(
-						pieza.Color))
+				if (pieza != null && gestor.EsTurnoDe(pieza.Color))
 				{
 					piezaSeleccionada = pieza;
-
 					filaSeleccionada = fila;
-
 					columnaSeleccionada = columna;
-
 					MostrarMovimientos();
 				}
 			}
+			else
+			{
+				bool movimiento = IntentarMover(filaSeleccionada, columnaSeleccionada, fila, columna);
+
+				LimpiarColores();
+
+				piezaSeleccionada = null;
+				filaSeleccionada = -1;
+				columnaSeleccionada = -1;
+
+				if (movimiento)
+				{
+					gestor.CambiarTurno();
+					DibujarPiezas();
+				}
+			}
 		}
-	}
-}
+		private void MostrarMovimientos()
+		{
+			LimpiarColores();
 
+			for (int fila = 0; fila < 8; fila++)
+			{
+				for (int columna = 0; columna < 8; columna++)
+				{
+					if (piezaSeleccionada
+						.EsMovimientoValido(
+							fila,
+							columna,
+							tableroLogico))
+					{
+						casillas[fila, columna]
+							.BackColor =
+								Color.Yellow;
+					}
+				}
+			}
+		}
+	
+		private void MostrarMovimientos()
+		{
+			// Implementación mínima: resalta la casilla seleccionada
+			if (filaSeleccionada >= 0 && columnaSeleccionada >= 0)
+			{
+				casillas[filaSeleccionada, columnaSeleccionada].BackColor = Color.LightGreen;
+			}
+		}
 
-
-
-
-
-		private GestorTurnos gestor; // Instancia de nuestra clase
+		private void LimpiarColores()
+		{
+			for (int fila = 0; fila < 8; fila++)
+			{
+				for (int columna = 0; columna < 8; columna++)
+				{
+					casillas[fila, columna].BackColor = ((fila + columna) % 2 == 0) ? Color.White : Color.Gray;
+				}
+			}
+		}
 
 		private void ActualizarInterfazTurno(Jugador nuevoTurno)
 		{
@@ -148,9 +181,6 @@ namespace Juego_de_Estrategias
 		{
 			gestor.CambiarTurno();
 		}
-
-		// Matriz de 8x8 que guarda objetos de tipo Pieza
-		Pieza[,] tableroLogico = new Pieza[8, 8];
 
 		// Ejemplo de cómo inicializar tus piezas:
 		public void InicializarPiezas()
@@ -172,9 +202,7 @@ namespace Juego_de_Estrategias
 			InicializarPiezas();
 
 			// Colocar algunas piezas negras para pruebas de captura
-			// Colocamos una torre negra frente a un soldado blanco para verificar captura
 			tableroLogico[5, 3] = new Torre(Jugador.Negro, 5, 3);
-			// Colocamos un rey negro para comprobar detección de fin de juego
 			tableroLogico[0, 0] = new Rey(Jugador.Negro, 0, 0);
 		}
 
