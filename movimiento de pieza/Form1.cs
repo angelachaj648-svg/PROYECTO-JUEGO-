@@ -72,30 +72,43 @@ namespace Juego_de_Estrategias
 
 						lbl.TextAlign =
 							ContentAlignment.MiddleCenter;
-						if (pieza.Tipo ==
-						TipoPieza.Rey)
+						if (pieza.Tipo == TipoPieza.Rey)
+							
 						{
 							lbl.Text = "R";
 						}
 
-						if (pieza.Tipo ==
-							TipoPieza.Torre)
+						if (pieza.Tipo == TipoPieza.Torre)
+							
 						{
 							lbl.Text = "T";
 						}
 
-						if (pieza.Tipo ==
-							TipoPieza.Soldado)
+						if (pieza.Tipo == TipoPieza.Soldado)
+							
 						{
 							lbl.Text = "S";
 						}
 
-						casillas[fila, columna]
-							.Controls.Add(lbl);
+						casillas[fila, columna].Controls.Add(lbl);
+							
 					}
 				}
 			}
 		}
+		private void Casilla_Click(object sender, ventArgs e)
+	
+	
+		{
+			Panel casilla =
+				sender as Panel;
+
+			Point posicion =
+				(Point)casilla.Tag;
+
+			int fila = posicion.X;
+
+			int columna = posicion.Y;
 
 
 
