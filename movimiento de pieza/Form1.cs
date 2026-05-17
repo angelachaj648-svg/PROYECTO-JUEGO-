@@ -73,32 +73,32 @@ namespace Juego_de_Estrategias
 						lbl.TextAlign =
 							ContentAlignment.MiddleCenter;
 						if (pieza.Tipo == TipoPieza.Rey)
-							
+
 						{
 							lbl.Text = "R";
 						}
 
 						if (pieza.Tipo == TipoPieza.Torre)
-							
+
 						{
 							lbl.Text = "T";
 						}
 
 						if (pieza.Tipo == TipoPieza.Soldado)
-							
+
 						{
 							lbl.Text = "S";
 						}
 
 						casillas[fila, columna].Controls.Add(lbl);
-							
+
 					}
 				}
 			}
 		}
 		private void Casilla_Click(object sender, ventArgs e)
-	
-	
+
+
 		{
 			Panel casilla =
 				sender as Panel;
@@ -109,6 +109,27 @@ namespace Juego_de_Estrategias
 			int fila = posicion.X;
 
 			int columna = posicion.Y;
+			if (piezaSeleccionada == null)
+			{
+				Pieza pieza =
+					tableroLogico[fila, columna];
+
+				if (pieza != null &&
+					gestor.EsTurnoDe(
+						pieza.Color))
+				{
+					piezaSeleccionada = pieza;
+
+					filaSeleccionada = fila;
+
+					columnaSeleccionada = columna;
+
+					MostrarMovimientos();
+				}
+			}
+		}
+	}
+}
 
 
 
