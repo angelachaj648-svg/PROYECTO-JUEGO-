@@ -24,7 +24,7 @@ namespace movimiento_de_pieza
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			InicializarPiezas();
+			InicializarPiezas();//0
 			CrearTablero();
 			DibujarPiezas();
 		}
@@ -47,7 +47,7 @@ namespace movimiento_de_pieza
 						casilla.BackColor = Color.Gray;
 
 					casilla.Name = $"Casilla_{fila}_{columna}";
-					casilla.Tag = new Point(fila, columna);
+					casilla.Tag = new Point(fila, columna);//0
 					casilla.Click += Casilla_Click;
 
 					this.Controls.Add(casilla);
@@ -56,7 +56,7 @@ namespace movimiento_de_pieza
 			}
 		}
 
-		private void DibujarPiezas()
+		private void DibujarPiezas()//0
 		{
 			for (int f = 0; f < 8; f++)
 			{
@@ -91,7 +91,7 @@ namespace movimiento_de_pieza
 			}
 		}
 
-		private void Casilla_Click(object sender, EventArgs e)
+		private void Casilla_Click(object sender, EventArgs e)//0
 		{
 			Panel casilla = sender as Panel;
 			if (casilla == null) return;
@@ -129,7 +129,7 @@ namespace movimiento_de_pieza
 				}
 			}
 		}
-		private void MostrarMovimientos()
+		private void MostrarMovimientos() //0
 		{
 			LimpiarColores();
 
@@ -160,7 +160,7 @@ namespace movimiento_de_pieza
 			}
 		}
 
-		private void LimpiarColores()
+		private void LimpiarColores()//0
 		{
 			for (int fila = 0; fila < 8; fila++)
 			{
@@ -235,7 +235,7 @@ namespace movimiento_de_pieza
 			// Actualizar coordenadas internas de la pieza
 			piezaAtacante.Fila = filaDestino;
 			piezaAtacante.Columna = colDestino;
-
+			DibujarPiezas();//0
 			return true;
 		}
 
