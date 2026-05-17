@@ -1,6 +1,7 @@
 using Munu_en_forms;
 using System;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Juego_de_Estrategias
 {
@@ -41,4 +42,13 @@ namespace Juego_de_Estrategias
 				"Puntaje máximo: 120");
 		}
 
-		
+		private void salirToolStripMenuItem_Click(bject sender,
+			
+			EventArgs e)
+		{
+			Application.Exit();
+		}
+	}
+}
+
+
