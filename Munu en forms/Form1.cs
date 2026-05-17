@@ -31,5 +31,14 @@ namespace Juego_de_Estrategias
 				"TORRE: horizontal y vertical" +
 				"SOLDADO: avanza y captura diagonal");
 		}
+		
+
+        private void puntajesToolStripMenuItem_Click(
+			object sender,
+			EventArgs e)
+		{
+			MessageBox.Show(
+				"Puntaje máximo: 120");
+		}
 
 		
