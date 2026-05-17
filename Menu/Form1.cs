@@ -1,3 +1,5 @@
+
+
 namespace Menu
 {
 	internal class Menu
@@ -131,4 +133,22 @@ namespace Menu
 
 			Console.ReadKey();
 		}
-		
+		private void MostrarPuntajes()
+		{
+			Console.Clear();
+
+			Console.WriteLine(
+				"----------PUNTAJES ----------");
+
+			Console.WriteLine();
+
+			Console.WriteLine("Jugador: Maestro");
+			
+
+			Console.WriteLine("Puntaje máximo: 120");
+			
+			Console.ReadKey();
+		}
+	}
+}
+

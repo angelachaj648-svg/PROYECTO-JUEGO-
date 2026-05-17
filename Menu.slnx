@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Menu/Menu.csproj" />
+  <Project Path="movimiento de pieza/movimiento de pieza.csproj" />
 </Solution>
