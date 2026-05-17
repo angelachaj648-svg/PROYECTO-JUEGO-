@@ -96,7 +96,7 @@ namespace Juego_de_Estrategias
 				}
 			}
 		}
-		private void Casilla_Click(object sender, ventArgs e)
+		private void Casilla_Click(object sender, ventArgs e)//0
 
 
 		{
@@ -130,6 +130,7 @@ namespace Juego_de_Estrategias
 		}
 	}
 }
+
 
 
 
