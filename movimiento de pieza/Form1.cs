@@ -72,10 +72,35 @@ namespace Juego_de_Estrategias
 
 						lbl.TextAlign =
 							ContentAlignment.MiddleCenter;
+						if (pieza.Tipo ==
+						TipoPieza.Rey)
+						{
+							lbl.Text = "R";
+						}
 
-						
+						if (pieza.Tipo ==
+							TipoPieza.Torre)
+						{
+							lbl.Text = "T";
+						}
 
-						
+						if (pieza.Tipo ==
+							TipoPieza.Soldado)
+						{
+							lbl.Text = "S";
+						}
+
+						casillas[fila, columna]
+							.Controls.Add(lbl);
+					}
+				}
+			}
+		}
+
+
+
+
+
 		private GestorTurnos gestor; // Instancia de nuestra clase
 
 		private void ActualizarInterfazTurno(Jugador nuevoTurno)
