@@ -50,7 +50,32 @@ namespace Juego_de_Estrategias
 				}
 			}
 		}
+		private void DibujarPiezas() ///0
+		{
+			for (Panel p in casillas)
+			{
+				p.Controls.Clear();
+			}
 
+			for (int fila = 0; fila < 8; fila++)
+			{
+				for (int columna = 0; columna < 8; columna++)
+				{
+					Pieza pieza =
+						tableroLogico[fila, columna];
+
+					if (pieza != null)
+					{
+						Label lbl = new Label();
+
+						lbl.Dock = DockStyle.Fill;
+
+						lbl.TextAlign =
+							ContentAlignment.MiddleCenter;
+
+						
+
+						
 		private GestorTurnos gestor; // Instancia de nuestra clase
 
 		private void ActualizarInterfazTurno(Jugador nuevoTurno)
