@@ -9,4 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\movimiento de pieza\movimiento de pieza.csproj" />
+  </ItemGroup>
+
 </Project>

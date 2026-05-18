@@ -1,6 +1,10 @@
-﻿namespace Munu_en_forms
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace Juego_de_Estrategias
 {
-	partial class Form1
+	partial class FormMenu
 	{
 		/// <summary>
 		///  Required designer variable.
@@ -30,14 +34,13 @@
 		{
 			SuspendLayout();
 			// 
-			// Form1
+			// FormMenu
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 450);
-			Name = "Form1";
-			Text = "Form1";
-			Load += Form1_Load;
+			Name = "FormMenu";
+			Text = "Menu";
 			ResumeLayout(false);
 		}
 
