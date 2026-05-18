@@ -129,34 +129,22 @@ namespace movimiento_de_pieza
 				}
 			}
 		}
-		private void MostrarMovimientos() //0
+		private void MostrarMovimientos()
 		{
 			LimpiarColores();
+
+			if (piezaSeleccionada == null)
+				return;
 
 			for (int fila = 0; fila < 8; fila++)
 			{
 				for (int columna = 0; columna < 8; columna++)
 				{
-					if (piezaSeleccionada
-						.EsMovimientoValido(
-							fila,
-							columna,
-							tableroLogico))
+					if (piezaSeleccionada.EsMovimientoValido(fila, columna, tableroLogico))
 					{
-						casillas[fila, columna]
-							.BackColor =
-								Color.Yellow;
+						casillas[fila, columna].BackColor = Color.Yellow;
 					}
 				}
-			}
-		}
-	
-		private void MostrarMovimientos()
-		{
-			// Implementación mínima: resalta la casilla seleccionada
-			if (filaSeleccionada >= 0 && columnaSeleccionada >= 0)
-			{
-				casillas[filaSeleccionada, columnaSeleccionada].BackColor = Color.LightGreen;
 			}
 		}
 
